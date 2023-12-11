@@ -1,0 +1,34 @@
+<!-- templates/listado_carreras.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Short Name</th>
+                    <th>Image</th>
+                    <th>State</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for carrera in carreras %}
+                <tr>
+                    <td>{{ carrera.idcareer }}</td>
+                    <td>{{ carrera.name }}</td>
+                    <td>{{ carrera.shortname }}</td>
+                    <!-- Depending on your requirements, you may display the image differently -->
+                    <td><img src="{{ carrera.image.url }}" alt="{{ carrera.name }}" style="max-width: 50px; max-height: 50px;"></td>
+                    <td>{{ carrera.state }}</td>
+                    <td><a href="{% url 'eliminar_carrera' idcareer=carrera.idcareer %}" class="btn btn-sm btn-block btn-danger">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
